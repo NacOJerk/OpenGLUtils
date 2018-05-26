@@ -3,6 +3,8 @@
 #include <string>
 #include <glad/glad.h>
 
+#define SHADER_TYPES 4
+
 class Shader
 {
 	unsigned int _ID;

@@ -32,7 +32,7 @@ Shader::Shader(const char * vertex, const char * fragment, bool shouldCompile)
 	{
 		throw std::exception("You must have a vertex shader");
 	}
-	_shaders = new unsigned int[5];
+	_shaders = new unsigned int[SHADER_TYPES + 1];
 	_shaders[0] = 1;
 	addShader(vertex, GL_VERTEX_SHADER);
 	if (fragment)
@@ -115,9 +115,9 @@ void Shader::addShader(const char * path, GLenum shaderType)
 		std::cerr << "The shader was already compiled, you can't add shaders to it" << std::endl;
 		return;
 	}
-	if (_shaders[0] >= 5)
+	if (_shaders[0] >= SHADER_TYPES + 1)
 	{
-		std::cerr << "You can not add more than 4 shaders" << std::endl;
+		std::cerr << "You can not add more than " << SHADER_TYPES << " shaders" << std::endl;
 		return;
 	}
 	std::string shaderData = readFile(path);
