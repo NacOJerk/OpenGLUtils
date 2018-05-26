@@ -11,6 +11,7 @@ class Shader
 	bool _used;
 	unsigned int* _shaders;
 	static std::string readFile(const char*);
+	Shader(Shader const&);
 public:
 	Shader(const char* vertex, const char* fragment, bool shouldCompile);
 	Shader(const char* vertex, const char* fragment);

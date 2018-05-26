@@ -26,16 +26,16 @@ std::string Shader::readFile(const char * path)
 Shader::Shader(const char * vertex, const char * fragment, bool shouldCompile)
 {
 	_ID = glCreateProgram();
-	if (_ID)
+	if (!_ID)
 		throw std::exception("Couldn't create shader");
-	if (!vertex)
+	if (!vertex  || !vertex[0])
 	{
 		throw std::exception("You must have a vertex shader");
 	}
 	_shaders = new unsigned int[SHADER_TYPES + 1];
 	_shaders[0] = 1;
 	addShader(vertex, GL_VERTEX_SHADER);
-	if (fragment)
+	if (fragment && fragment[0])
 		addShader(fragment, GL_FRAGMENT_SHADER);
 	if (shouldCompile)
 		compile();
